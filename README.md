@@ -10,7 +10,7 @@ Homebridge plugin for Marantz (and most likely Denon) recievers
 * Set Volume
 
 ### To Do:
-* Get Power / Mute / Volume / Input
+* Get Power / Mute / Volume / Input => require("xml2js")
 
 
 Work in progress...
