@@ -35,7 +35,7 @@ function MarantzAccessory(log, config) {
 MarantzAccessory.AudioVolume = function() {
   Characteristic.call(this, 'Volume', '00001001-0000-1000-8000-135D67EC4377');
   this.setProps({
-    format: Characteristic.Formats.INT,
+    format: Characteristic.Formats.FLOAT,
     //unit: Characteristic.Units.PERCENTAGE,
     maxValue: 35,
     minValue: -80,
@@ -139,7 +139,7 @@ MarantzAccessory.prototype = {
   	},
 
   	getVolume: function(callback) {
-  		callback(null, Number(-48));
+  		callback(null, Number(-48.0));
   	},
 
   	setVolume: function(value, callback) {
