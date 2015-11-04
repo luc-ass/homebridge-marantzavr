@@ -21,9 +21,6 @@ function MarantzAccessory(log, config) {
 
 	this.log = log;
 
-
-	this.log(this.ip);
-
 	this.on_url = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutZone_OnOff/ON";
 	this.off_url = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutZone_OnOff/OFF";
 
@@ -31,8 +28,6 @@ function MarantzAccessory(log, config) {
 	this.mute_off = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutVolumeMute/OFF";
 
 	this.volume_url = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutMasterVolumeSet/";
-
-	this.log(this.powerOnUrl);
 }
 
 // Custom Characteristics and service...
