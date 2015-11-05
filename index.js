@@ -19,7 +19,6 @@ module.exports = function(homebridge) {
     // configuration
     this.ip = config['ip'];
     this.name = config['name'];
-    this.http_method = "GET";
 
     this.log = log;
 
@@ -99,7 +98,7 @@ module.exports = function(homebridge) {
       	this.log("Set", this.name, "to off");
     	}
 
-    	this.httpRequest(url, this.http_method, function(error, response, body) {
+    	this.httpRequest(url, "GET", function(error, response, body) {
       	if (error) {
         	this.log('HTTP power function failed: %s');
         	callback(error);
@@ -127,7 +126,7 @@ module.exports = function(homebridge) {
       	this.log(this.name, "unmuted");
     	}
 
-    	this.httpRequest(url, this.http_method, function(error, response, body) {
+    	this.httpRequest(url, "GET", function(error, response, body) {
       	if (error) {
         	this.log('HTTP power function failed: %s');
         	callback(error);
