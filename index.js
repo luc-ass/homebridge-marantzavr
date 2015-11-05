@@ -4,13 +4,15 @@
 //     "name" : "MarantzAVR",
 //     "ip" : "ip"
 // }
-var Service = require("hap-nodejs").Service;
-var Characteristic = require("hap-nodejs").Characteristic;
 var request = require("request");
 var inherits = require('util').inherits;
+var Service, Characteristic;
 
-module.exports = {
-  accessory: MarantzAccessory
+module.exports = function(homebridge) {
+  Service = homebridge.hap.Service;
+  Characteristic = homebridge.hap.Characteristic;
+  
+  homebridge.registerAccessory("homebridge-marantzavr", "MarantzAVR", MarantzAccessory);
 }
 
 function MarantzAccessory(log, config) {
