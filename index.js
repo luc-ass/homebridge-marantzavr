@@ -12,8 +12,8 @@ module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   
-  homebridge.registerAccessory("homebridge-marantzavr", "MarantzAccessory", MarantzAccessory);
-}
+  homebridge.registerAccessory("homebridge-marantzavr", "marantzavr", MarantzAccessory);
+
 
 function MarantzAccessory(log, config) {
 	// configuration
@@ -180,4 +180,5 @@ MarantzAccessory.prototype = {
 		// var audioDeviceServie = new Service. // what do we do now?
 	return [informationService, switchService, audioDeviceServie];
 	}
-};
+}
+}
