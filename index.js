@@ -12,7 +12,7 @@ module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   
-  homebridge.registerAccessory("homebridge-marantzavr", "MarantzAVR", MarantzAccessory);
+  homebridge.registerAccessory("homebridge-marantzavr", "MarantzAccessory", MarantzAccessory);
 }
 
 function MarantzAccessory(log, config) {
