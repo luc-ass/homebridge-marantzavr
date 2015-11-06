@@ -5,6 +5,7 @@
 //     "ip" : "ip"
 // }
 var request = require("request");
+var parser = require("xml2json");
 var inherits = require('util').inherits;
 var Service, Characteristic;
 
@@ -21,6 +22,8 @@ module.exports = function(homebridge) {
     this.name = config['name'];
 
     this.log = log;
+
+    this.get_url = "http://" + this.ip + "/goform/formMainZone_MainZoneXml.xml";
 
     this.on_url = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutZone_OnOff/ON";
     this.off_url = "http://" + this.ip + "/MainZone/index.put.asp?cmd0=PutZone_OnOff/OFF";
@@ -83,6 +86,16 @@ module.exports = function(homebridge) {
     },
 
     getPowerState: function(callback) {
+      var url;
+      url = this.get_url;
+
+      this.httpRequest(url, "GET", function(error, response, body) {
+        json = parser.toJson(body);
+        jsonObject = JSON.parse(json);
+        this.log(jsonObject.item.Power);
+
+      }.bind(this))
+
       callback(true);
     },
 
