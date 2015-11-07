@@ -21,7 +21,7 @@ Configuration sample:
             "name": "Reciever Name", //choose anything you want, if not it will be pulled from "friendly name"
             "ip": "100.100.100.100"
         }
-    ],
+    ]
 ```
 
 # Roadmap
