@@ -31,6 +31,6 @@ Configuration sample:
 - get mute state
 - ~~set mute state~~
 - get volume
-- set volume
+- set volume (including rate limiter --> underscore.throttle)
 - get input
  
