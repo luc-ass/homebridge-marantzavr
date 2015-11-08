@@ -39,8 +39,7 @@ module.exports = function(homebridge) {
     Characteristic.call(this, 'Volume', '00001001-0000-1000-8000-135D67EC4377');
     this.setProps({
       format: Characteristic.Formats.FLOAT,
-      //unit: Characteristic.Units.PERCENTAGE,
-      maxValue: 35,
+      maxValue: 35,	// !!! this needs to be configured! Dangerous volume level!
       minValue: -80,
       minStep: 1,
       perms: [Characteristic.Perms.READ, Characteristic.Perms.WRITE, Characteristic.Perms.NOTIFY]
@@ -62,11 +61,8 @@ module.exports = function(homebridge) {
   MarantzAVR.AudioDeviceService = function(displayName, subtype) {
     Service.call(this, displayName, '00000001-0000-1000-8000-135D67EC4377', subtype);
 
-    // Required Characteristics
+    // Volume Characteristics
     this.addCharacteristic(MarantzAVR.AudioVolume);
-
-    // Optional Characteristics
-    //this.addOptionalCharacteristic(MarantzAVR.Muting);
     this.addCharacteristic(MarantzAVR.Muting);
   };
   inherits(MarantzAVR.AudioDeviceService, Service);
@@ -187,8 +183,6 @@ module.exports = function(homebridge) {
 				.on('get', this.getVolume.bind(this))
 				.on('set', this.setVolume.bind(this));
 
-		// not yet
-		// var audioDeviceServie = new Service. // what do we do now?
     return [informationService, switchService, audioDeviceServie];
     }
   }
