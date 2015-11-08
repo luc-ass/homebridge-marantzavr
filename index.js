@@ -166,9 +166,9 @@ module.exports = function(homebridge) {
 		var informationService = new Service.AccessoryInformation();
 		informationService
 			.setCharacteristic(Characteristic.Name, this.name)
-	    	.setCharacteristic(Characteristic.Manufacturer, "Marantz")
-	    	.setCharacteristic(Characteristic.Model, "Unknown")
-	    	.setCharacteristic(Characteristic.SerialNumber, "1234567890");
+	    		.setCharacteristic(Characteristic.Manufacturer, "Marantz")
+	    		.setCharacteristic(Characteristic.Model, "Unknown")
+	    		.setCharacteristic(Characteristic.SerialNumber, "1234567890");
 
 		var switchService = new Service.Switch("Power State");
 		switchService
