@@ -18,7 +18,7 @@ Configuration sample:
 "accessorys": [
         {
             "accessory": "MarantzAVR",
-            "name": "Reciever Name", //choose anything you want, if not it will be pulled from "friendly name"
+            "name": "MarantzAVR",
             "ip": "100.100.100.100"
         }
     ]
