@@ -1,6 +1,6 @@
 {
   "name": "homebridge-marantzavr",
-  "version": "v0.1.0",
+  "version": "v0.2.0",
   "description": "MarantzAVR plugin for homebridge: https://github.com/luc-ass/homebridge-marantzavr",
   "license": "ISC",
   "keywords": [
