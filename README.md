@@ -4,11 +4,10 @@ This ia a plugin for homebridge. It is a partially-working implementation of Den
 
 # Installation
 
-!! Not yet on NPM
+This plugin is not yet on NPM. Insatllation only via GitHub at the moment...
 
 1. Install homebridge using: npm install -g homebridge <br>
 2. Install this plugin using npm install -g git+https://git@github.com/luc-ass/homebridge-marantzavr
-> 2. Install this plugin using: npm install -g homebridge-marantzavr <br>
 3. Update your configuration file. See sample-config below for a sample. 
 
 # Configuration
