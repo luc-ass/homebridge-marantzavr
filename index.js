@@ -1,9 +1,5 @@
-// The configuration is stored inside the ../config.json
-// {
-//     "accessory": "MarantzAVR",
-//     "name" : "MarantzAVR",
-//     "ip" : "ip"
-// }
+// Accessory for controlling Marantz and Denon AVR via HomeKit
+
 var request = require("request");
 var parser = require("xml2json");
 var inherits = require('util').inherits;

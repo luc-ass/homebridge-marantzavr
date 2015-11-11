@@ -15,7 +15,7 @@ ATTENTION! This does not yet work! Project is not yet uploaded to npm.
 Configuration sample:
 
 ```
-"accessorys": [
+"accessories": [
         {
             "accessory": "MarantzAVR",
             "name": "MarantzAVR",
