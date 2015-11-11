@@ -18,7 +18,7 @@ Configuration sample:
 "accessorys": [
         {
             "accessory": "MarantzAVR",
-            "name": "Reciever Name", //choose anything you want, if not it will be pulled from "friendly name"
+            "name": "Reciever Name",
             "ip": "100.100.100.100"
         }
     ]
@@ -26,11 +26,11 @@ Configuration sample:
 
 # Roadmap
 
-- get power state
+- ~~get power state~~
 - ~~set power state~~
-- get mute state
+- ~~get mute state~~
 - ~~set mute state~~
-- get volume
+- ~~get volume~~
 - set volume
-- get input
+- get input (no Characteristic yet)
  

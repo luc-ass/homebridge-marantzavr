@@ -92,11 +92,19 @@ module.exports = function(homebridge) {
       this.httpRequest(url, "GET", function(error, response, body) {
         json = parser.toJson(body);
         jsonObject = JSON.parse(json);
-        this.log(jsonObject.item.Power);
+
+        response = jsonObject.item.Power.value;
+
+        if (response === "ON") {
+          callback(null, true);
+        }
+        else {
+          callback(null, false);
+        }
+        this.log("Power state is:", response);
 
       }.bind(this))
 
-      callback(true);
     },
 
     setPowerState: function(powerOn, callback) {
@@ -124,7 +132,25 @@ module.exports = function(homebridge) {
   	},
 
     getMuteState: function(callback) {
-      callback(true);
+      var url;
+      url = this.get_url;
+
+      this.httpRequest(url, "GET", function(error, response, body) {
+        json = parser.toJson(body);
+        jsonObject = JSON.parse(json);
+
+        response = jsonObject.item.Mute.value;
+
+        if (response === "on") {
+          callback(null, true);
+        }
+        else {
+          callback(null, false);
+        }
+        this.log("Mute state is:", response);
+
+      }.bind(this))
+
     },
 
     setMuteState: function(muteOn, callback) {
@@ -152,8 +178,22 @@ module.exports = function(homebridge) {
   	},
 
   	getVolume: function(callback) {
-  		callback(null, Number(-48.0));
-  	},
+      var url;
+      url = this.get_url;
+
+      this.httpRequest(url, "GET", function(error, response, body) {
+        json = parser.toJson(body);
+        jsonObject = JSON.parse(json);
+
+        response = jsonObject.item.MasterVolume.value;
+
+        callback(null, Number(response));
+
+        this.log("MasterVolume is:", response);
+
+      }.bind(this))
+
+    },
 
   	setVolume: function(value, callback) {
   		this.log("Set volume to", value, "db");
