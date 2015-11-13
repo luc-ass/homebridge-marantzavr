@@ -5,6 +5,10 @@ var parser = require("xml2json");
 var inherits = require('util').inherits;
 var Service, Characteristic;
 
+// need to be global to be used in constructor
+var maxVolume;
+var minVolume;
+
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
@@ -16,6 +20,8 @@ module.exports = function(homebridge) {
     // configuration
     this.ip = config['ip'];
     this.name = config['name'];
+    maxVolume = config['maxVolume'];
+    minVolume = config['minVolume'];
 
     this.log = log;
 
@@ -33,12 +39,12 @@ module.exports = function(homebridge) {
   // Custom Characteristics and service...
   MarantzAVR.AudioVolume = function() {
     Characteristic.call(this, 'Volume', '00001001-0000-1000-8000-135D67EC4377');
+    console.log("Maximum Volume", maxVolume);
     this.setProps({
       format: Characteristic.Formats.FLOAT,
-      //unit: Characteristic.Units.PERCENTAGE,
-      maxValue: 35,
-      minValue: -80,
-      minStep: 1,
+      maxValue: maxVolume, // read from config, does not work!
+      minValue: minVolume, // read from config, does not work!
+      minStep: 0.5,
       perms: [Characteristic.Perms.READ, Characteristic.Perms.WRITE, Characteristic.Perms.NOTIFY]
     });
     this.value = this.getDefaultValue();
@@ -57,12 +63,7 @@ module.exports = function(homebridge) {
 
   MarantzAVR.AudioDeviceService = function(displayName, subtype) {
     Service.call(this, displayName, '00000001-0000-1000-8000-135D67EC4377', subtype);
-
-    // Required Characteristics
     this.addCharacteristic(MarantzAVR.AudioVolume);
-
-    // Optional Characteristics
-    //this.addOptionalCharacteristic(MarantzAVR.Muting);
     this.addCharacteristic(MarantzAVR.Muting);
   };
   inherits(MarantzAVR.AudioDeviceService, Service);
@@ -163,11 +164,11 @@ module.exports = function(homebridge) {
 
     	this.httpRequest(url, "GET", function(error, response, body) {
       	if (error) {
-        	this.log('HTTP power function failed: %s');
+        	this.log('HTTP mute function failed: %s');
         	callback(error);
       	}
       	else {
-        	this.log('HTTP power function succeeded!');
+        	this.log('HTTP mute function succeeded!');
         	callback();
       		}
     	}.bind(this));
@@ -192,8 +193,18 @@ module.exports = function(homebridge) {
     },
 
   	setVolume: function(value, callback) {
-  		this.log("Set volume to", value, "db");
-  		callback();
+      url = this.volume_url + value
+
+  		this.httpRequest(url, "GET", function(error, response, body) {
+        if (error) {
+          this.log('HTTP volume function failed: %s');
+          callback(error);
+        }
+        else {
+          this.log("Set volume to", value, "db");
+          callback();
+          }
+      }.bind(this));
   	},
 
   getServices: function() {

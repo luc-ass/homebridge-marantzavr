@@ -19,10 +19,18 @@ Configuration sample:
         {
             "accessory": "MarantzAVR",
             "name": "MarantzAVR",
-            "ip": "100.100.100.100"
+            "ip": "100.100.100.100",
+            "maxVolume": -20.0,
+            "minVolume": -79.0
         }
     ]
 ```
+
+- accessory: MarantzAVR
+- name: can be anything you want
+- ip: IP of you AVR
+- maxVolume: can be configured. Please be careful not to select very high values. -20.0 recomended
+- minVolume: minimal Volume of your device, does not influence "mute"
 
 # Roadmap
 
@@ -31,6 +39,6 @@ Configuration sample:
 - ~~get mute state~~
 - ~~set mute state~~
 - ~~get volume~~
-- set volume (including rate limiter --> underscore.throttle)
+- ~~set volume~~ (does not include rate limiter! --> underscore.throttle)
 - get input (no Characteristic yet)
  
