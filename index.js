@@ -42,8 +42,8 @@ module.exports = function(homebridge) {
     console.log("Maximum Volume", maxVolume);
     this.setProps({
       format: Characteristic.Formats.FLOAT,
-      maxValue: maxVolume, // read from config, does not work!
-      minValue: minVolume, // read from config, does not work!
+      maxValue: maxVolume,
+      minValue: minVolume,
       minStep: 0.5,
       perms: [Characteristic.Perms.READ, Characteristic.Perms.WRITE, Characteristic.Perms.NOTIFY]
     });
